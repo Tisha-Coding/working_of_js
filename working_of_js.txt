@@ -1,0 +1,79 @@
+                           Working of Javascript
+
+
+1. Function Hoisting: Using addNumbers Before Declaration
+javascript
+code
+console.log(addNumbers(5, 10)); // Output: 15 (Hoisting works)
+
+function addNumbers(a, b) {
+  return a + b;
+}
+
+Explanation:
+
+In JavaScript, function declarations are hoisted, meaning the function can be called before it is defined in the code. This is possible due to how JavaScript handles hoisting during the compilation phase.
+
+2. Function Expression: Demonstrating Hoisting with multiplyNumbers
+javascript
+code
+console.log(multiplyNumbers(5, 10)); // Output: Error (Cannot access 'multiplyNumbers' before initialization)
+
+const multiplyNumbers = function(a, b) {
+  return a * b;
+};
+
+Explanation:
+
+Function expressions are not hoisted like function declarations. If you attempt to call the function before the expression is assigned, JavaScript will throw a ReferenceError because the variable multiplyNumbers is in the "temporal dead zone" and cannot be accessed before it is initialized.
+
+3. Variable Hoisting Using var
+javascript
+Copy code
+function sumWithHoisting(a, b) {
+  console.log(result); // Output: undefined (var is hoisted but uninitialized)
+
+  var result = a + b;
+  return result;
+}
+
+console.log(sumWithHoisting(5, 10)); // Output: 15
+
+Explanation:
+
+Variables declared with var are hoisted to the top of their scope, but their initialization is not hoisted. When you attempt to access the variable before it is initialized, its value is undefined.
+
+4. Demonstrating Variable Hoisting with var, let, and const
+javascript
+code
+{
+  console.log(varVariable); // Output: undefined (var is hoisted but uninitialized)
+  console.log(letVariable); // Output: ReferenceError (Temporal Dead Zone)
+  console.log(constVariable); // Output: ReferenceError (Temporal Dead Zone)
+
+  var varVariable = 'I am var';
+  let letVariable = 'I am let';
+  const constVariable = 'I am const';
+
+  console.log(varVariable); // Output: I am var
+  console.log(letVariable); // Output: I am let
+  console.log(constVariable); // Output: I am const
+}
+
+Explanation:
+
+var is hoisted but remains undefined until it's initialized.
+let and const are hoisted but are in a temporal dead zone (TDZ) until their declaration is encountered. Accessing them before initialization results in a ReferenceError.
+
+5. Demonstrating Temporal Dead Zone with let
+javascript
+code
+{
+  console.log(letVariable); // Output: ReferenceError (Temporal Dead Zone)
+
+  let letVariable = 'I am let after TDZ';
+}
+
+Explanation:
+
+The variable letVariable is in the temporal dead zone until the let declaration is encountered. Any attempt to access it before initialization will result in a ReferenceError.
